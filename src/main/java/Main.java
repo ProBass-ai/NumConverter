@@ -20,45 +20,32 @@ public class Main {
 
 
         switch (userIn) {
+
             case "1" -> {
+
                 System.out.print("Enter number to convert: ");
                 userIn = scanner.next();
 
-                try {
-
-                    assert 0 >= Integer.parseInt(userIn) || Integer.parseInt(userIn) > 10000 || true;
-
-                } catch (NumberFormatException formatException){
-
-                    while (0 >= Integer.parseInt(userIn) || Integer.parseInt(userIn) > 10000) {
-                        System.out.println("Please Enter a number between 0 and 10000");
-                        userIn = scanner.nextLine();
-                    }
-
+                while (!checkInt(userIn)) {
+                    System.out.println("Please Enter a number between 0 and 10000");
+                    userIn = scanner.nextLine();
                 }
+
 
                 System.out.println("Converting...");
                 converts = fromDecimalToHex.convert(Integer.parseInt(userIn));
 
                 System.out.println("Output: ");
                 System.out.println(converts);
-            }
-            case "2" -> {
+
+            } case "2" -> {
 
                 System.out.print("Enter number to convert: ");
                 userIn = scanner.next();
 
-                try {
-
-                    assert 0 >= Double.parseDouble(userIn) || Double.parseDouble(userIn) > 10000 || true;
-
-                } catch (NumberFormatException formatException){
-
-                    while (0 >= Double.parseDouble(userIn) || Double.parseDouble(userIn) > 10000){
-                        System.out.println("Please Enter a number between 0 and 10000");
-                        userIn = scanner.nextLine();
-                    }
-
+                while (!checkDouble(userIn)){
+                    System.out.println("Please Enter a number between 0 and 10000");
+                    userIn = scanner.nextLine();
                 }
 
 
@@ -67,23 +54,16 @@ public class Main {
 
                 System.out.println("Output: ");
                 System.out.println(converts);
+
             }
             case "3" -> {
 
                 System.out.print("Enter number to convert: ");
                 userIn = scanner.next();
 
-                try {
-
-                    assert 0 >= Double.parseDouble(userIn) || Double.parseDouble(userIn) > 10000 || true;
-
-                } catch (NumberFormatException formatException){
-
-                    while (0 >= Double.parseDouble(userIn) || Double.parseDouble(userIn) > 10000){
-                        System.out.println("Please Enter a number between 0 and 10000");
-                        userIn = scanner.nextLine();
-                    }
-
+                while (!checkDouble(userIn)){
+                    System.out.println("Please Enter a number between 0 and 10000");
+                    userIn = scanner.nextLine();
                 }
 
                 System.out.println("Converting...");
@@ -97,8 +77,23 @@ public class Main {
 
 
 
-
-
     }
+
+    public static boolean checkDouble(String n){
+        try{
+            return (Double.parseDouble(n) >= 0) && (Double.parseDouble(n) < 100000);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean checkInt(String n){
+        try{
+            return (Integer.parseInt(n)) >= 0 && (Integer.parseInt(n) < 100000);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 
 }
